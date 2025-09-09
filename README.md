@@ -41,7 +41,7 @@ conda create -c conda-forge -n mimicdroid python=3.10
 conda activate mimicdroid
 ```
 
-- **Clone and set up robosuite (use the master branch)**
+- **Clone and set up robosuite (use the abs_robot branc ShahRutav/robosuite)**
 ```bash
 git clone --branch=abs_robot https://github.com/ShahRutav/robosuite
 cd robosuite
@@ -71,6 +71,9 @@ python robocasa/scripts/setup_macros.py              # Set up system variables
  
 ## Dataset
 Please see [DATASET.md](DATASET.md) for dataset installation and visualization instructions.
+
+## Getting Started
+Please see [GETTING_STARTED.md](GETTING_STARTED.md) for instructions.
  
 ## Citation
 ```bibtex

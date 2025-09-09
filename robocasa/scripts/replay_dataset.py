@@ -169,6 +169,7 @@ def main():
         type=str,
         default="DemoTwoHand",
         help="Robot type (default: DemoTwoHand)",
+        choices=["DemoTwoHand", "GR1TwoHand"],
     )
     parser.add_argument(
         "--render", action="store_true", help="Render the environment during replay"
@@ -180,7 +181,6 @@ def main():
         default=1,
         help="Maximum number of episodes to replay",
     )
-    parser.add_argument("--task_name", type=str, default=None, help="Task name")
     parser.add_argument(
         "--use_camera_obs",
         action="store_true",
@@ -211,7 +211,6 @@ def main():
 
     env_args_obj = EnvArgs(
         robots=args.robots,
-        task_name=args.task_name,
         render=args.render,
         control_freq=20,
         controller="WHOLE_BODY_MINK_IK" if "GR1" in args.robots else None,
