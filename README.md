@@ -43,7 +43,7 @@ conda activate mimicdroid
 
 - **Clone and set up robosuite (use the master branch)**
 ```bash
-git clone --branch=branch-name https://github.com/ShahRutav/robosuite
+git clone --branch=abs_robot https://github.com/ShahRutav/robosuite
 cd robosuite
 pip install -e .
 cd ..
@@ -51,7 +51,7 @@ cd ..
 
 - **Clone and set up RoboCasa**
 ```bash
-git clone --branch=branch-name https://github.com/ShahRutav/robocasa
+git clone --branch=latest https://github.com/UT-Austin-RPL/mimicdroid-robocasa
 cd robocasa
 pip install -e .
 pip install pre-commit; pre-commit install    # Optional: code formatter

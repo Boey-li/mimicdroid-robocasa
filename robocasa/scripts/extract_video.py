@@ -365,38 +365,48 @@ def parse_args():
     parser.add_argument("--img_width", type=int, required=False, default=256)
     parser.add_argument("--img_height", type=int, required=False, default=256)
     parser.add_argument("--output_dir", type=str, required=False, default=None)
+    parser.add_argument(
+        "--base_dir",
+        type=str,
+        required=False,
+        default=None,
+        help="Base directory for dataset (overrides CASAPLAY_DATAROOT env var)",
+    )
     return parser.parse_args()
 
 
 if __name__ == "__main__":
     args = parse_args()
-    base_dir = os.environ.get("CASAPLAY_DATAROOT", None)
-    assert (
-        base_dir is not None
-    ), "CASAPLAY_DATAROOT environment variable must be set to the base directory of the dataset."
+
+    # Use provided base_dir or fall back to environment variable
+    base_dir = args.base_dir or os.environ.get("CASAPLAY_DATAROOT", None)
+    if base_dir is None:
+        print(
+            "ERROR: Base directory not specified. Use --base_dir or set CASAPLAY_DATAROOT environment variable."
+        )
+        sys.exit(1)
+
     # Example usage with DataLoader
     hdf5_paths = [
-        # f"{base_dir}/PlayEnvFinal/final_prompts/PnPSinkToMicrowaveTopL3/003/demo_im1024_notp_highres.hdf5",
-        # f"{base_dir}/PlayEnvFinal/final_prompts/CloseLeftCabinetDoor/003/demo_im1024_notp_highres.hdf5",
-        # f"{base_dir}/PlayEnvFinal/final_prompts/CloseLeftCabinetDoorL2/003/demo_im1024_notp_highres.hdf5",
-        # f"{base_dir}/PlayEnvFinal/final_prompts/CloseLeftCabinetDoorL3/003/demo_im1024_notp_highres.hdf5",
-        f"{base_dir}/PlayEnvFinal/final_high_res_prompts/CloseRightCabinetDoorL2/003/demo_im1024_notp_highres.hdf5",
-        # f"{base_dir}/PlayEnvFinal/final_prompts/PnPSinkToCabinet/003/demo_im1024_notp_highres.hdf5",
-        # f"{base_dir}/PlayEnvFinal/final_prompts/PnPSinkToCabinetL2/003/demo_im1024_notp_highres.hdf5",
-        # f"{base_dir}/PlayEnvFinal/final_prompts/PnPSinkToMicrowaveTopL3/003/demo_im1024_notp_highres.hdf5",
-        # f"{base_dir}/PlayEnvFinal/final_prompts/PnPSinkToRightCounterPlate/003/demo_im1024_notp_highres.hdf5",
-        # f"{base_dir}/PlayEnvFinal/final_prompts/PnPSinkToRightCounterPlateL2/003/demo_im1024_notp_highres.hdf5",
-        # f"{base_dir}/PlayEnvFinal/final_prompts/PnPSinkToRightCounterPlateL3/003/demo_im1024_notp_highres.hdf5",
-        # f"{base_dir}/PlayEnvFinal/final_prompts/TurnOnFaucet/003/demo_im1024_notp_highres.hdf5",
-        # f"{base_dir}/PlayEnvFinal/final_prompts/TurnOnFaucetL3/003/demo_im1024_notp_highres.hdf5",
+        # f"{base_dir}/MimicDroidDataset/TaskDemos/PnPSinkToMicrowaveTopL3/003/demo_im128_notp.hdf5",
+        # f"{base_dir}/MimicDroidDataset/TaskDemos/CloseLeftCabinetDoor/003/demo_im128_notp.hdf5",
+        # f"{base_dir}/MimicDroidDataset/TaskDemos/CloseLeftCabinetDoorL2/003/demo_im128_notp.hdf5",
+        # f"{base_dir}/MimicDroidDataset/TaskDemos/CloseLeftCabinetDoorL3/003/demo_im128_notp.hdf5",
+        # f"{base_dir}/MimicDroidDataset/TaskDemos/CloseRightCabinetDoorL2/003/demo_im128_notp.hdf5",
+        # f"{base_dir}/MimicDroidDataset/TaskDemos/PnPSinkToCabinet/003/demo_im128_notp.hdf5",
+        # f"{base_dir}/MimicDroidDataset/TaskDemos/PnPSinkToCabinetL2/003/demo_im128_notp.hdf5",
+        # f"{base_dir}/MimicDroidDataset/TaskDemos/PnPSinkToMicrowaveTopL3/003/demo_im128_notp.hdf5",
+        # f"{base_dir}/MimicDroidDataset/TaskDemos/PnPSinkToRightCounterPlate/003/demo_im128_notp.hdf5",
+        # f"{base_dir}/MimicDroidDataset/TaskDemos/PnPSinkToRightCounterPlateL2/003/demo_im128_notp.hdf5",
+        # f"{base_dir}/MimicDroidDataset/TaskDemos/PnPSinkToRightCounterPlateL3/003/demo_im128_notp.hdf5",
+        # f"{base_dir}/MimicDroidDataset/TaskDemos/TurnOnFaucet/003/demo_im128_notp.hdf5",
+        # f"{base_dir}/MimicDroidDataset/TaskDemos/TurnOnFaucetL3/003/demo_im128_notp.hdf5",
     ]
-    # output_directory = (
-    #     f"{base_dir}/PlayEnvFinal/final_prompts/PnPSinkToMicrowaveTopL3/003/"
-    # )
+
     output_directory = (
         args.output_dir
         if args.output_dir is not None
-        else "/home/rutavms/research/gaze/final_prompt_videos/"
+        else os.path.join(base_dir, "final_prompt_videos")
     )
     os.makedirs(output_directory, exist_ok=True)
 

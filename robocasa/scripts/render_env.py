@@ -150,10 +150,6 @@ def main():
             # Optionally render again
             if args.render:
                 env.render()
-        if args.render:
-            import ipdb
-
-            ipdb.set_trace()
 
         # Get environment metadata
         ep_meta = env.get_ep_meta() if hasattr(env, "get_ep_meta") else {}
