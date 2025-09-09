@@ -1,4 +1,4 @@
-# Getting Started with RoboCasa Dataset Replay
+# Getting Started with MimicDroid Tasks
 
 This document provides instructions for using the `replay_dataset.py` script to replay and visualize robotic manipulation trajectories from HDF5 dataset files.
 

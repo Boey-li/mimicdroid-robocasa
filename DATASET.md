@@ -131,4 +131,4 @@ If you encounter issues during download:
 
 ## Support
 
-For issues related to dataset download or usage, please refer to the RoboCasa documentation or create an issue in the repository.
+For issues related to dataset download or usage, please create an issue in the repository.
