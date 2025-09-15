@@ -2,7 +2,7 @@
 
 <img src="docs/images/mimicdroid-pullfigure.png" width="100%" />
 
-[Home page](https://ut-austin-rpl.github.io/MimicDroid/) · [Paper (TODO)](https://ut-austin-rpl.github.io/MimicDroid/)
+[Home page](https://ut-austin-rpl.github.io/MimicDroid/) · [Paper](https://arxiv.org/abs/2509.09769)
 
 This project builds on [**RoboCasa**](https://robocasa.ai), a large-scale simulation framework for training generally capable robots to perform everyday tasks. Please cite RoboCasa if you use this codebase.  
 
@@ -77,7 +77,11 @@ Please see [GETTING_STARTED.md](GETTING_STARTED.md) for instructions.
  
 ## Citation
 ```bibtex
-@inproceedings{mimicdroid2025,
+@article{shah2025mimicdroid,
+  title={MimicDroid: In-Context Learning for Humanoid Manipulation from Human Play Videos},
+  author={Shah, Rutav and Liu, Shuijing and Wang, Qi and Jiang, Zhenyu and Kumar, Sateesh and Seo, Mingyo and Mart{\'\i}n-Mart{\'\i}n, Roberto and Zhu, Yuke},
+  journal={arXiv preprint arXiv:2509.09769},
+  year={2025}
 }
 
 @inproceedings{robocasa2024,
