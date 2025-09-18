@@ -344,6 +344,8 @@ from robosuite.robots import ALL_ROBOTS
 
 import mujoco
 
+from importlib.metadata import version
+
 assert (
     mujoco.__version__ == "3.2.6"
 ), "MuJoCo version must be 3.2.6. Please run pip install mujoco==3.2.6"
@@ -358,8 +360,11 @@ assert numpy.__version__ in [
 
 import robosuite
 
-assert robosuite.__version__ in [
-    "1.5.0"
+# assert robosuite.__version__ in [
+#     "1.5.0"
+# ], "robosuite version must be 1.5.0. Please install the correct version"
+assert version("robosuite") in [
+    "1.5.0",
 ], "robosuite version must be 1.5.0. Please install the correct version"
 
 __version__ = "0.2.0"

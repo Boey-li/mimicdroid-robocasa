@@ -8,6 +8,7 @@ import numpy as np
 import xml.etree.ElementTree as ET
 from dataclasses import dataclass
 from typing import Optional, Union, List
+from termcolor import colored
 
 import robosuite
 from robosuite.utils.binding_utils import MjSimState
@@ -299,7 +300,11 @@ def reset_to(env, state, replace_robot_joints=True, change_to_gr1=False):
 
         if change_to_gr1:
             xml = replace_robot_tag(new_model_xml=xml, old_model_xml=curr_xml)
+        
+        # update xml absolute path
+        xml = update_xml_absolute_path(xml)
 
+        # update env
         env.reset_from_xml_string(xml)
         # env.sim.reset(): resets the robot back to some position which has collision with the table. Change the xml?
         env.sim.reset()
@@ -347,3 +352,16 @@ def reset_to(env, state, replace_robot_joints=True, change_to_gr1=False):
         env.update_state()
 
     return None
+
+
+# Added by Baoyu
+def update_xml_absolute_path(
+        xml,
+        old_path="/home/rutavms/research/gaze/robocasa/robocasa/models",
+        new_path="/coc/flash7/bli678/projects/egowm/external/mimicdroid-robocasa/robocasa/models"
+    ):
+    """
+    TODO: change new_path as input argument
+    """
+    print(colored(f"Update XML from {old_path} to {new_path}", "yellow"))
+    return xml.replace(old_path, new_path)
